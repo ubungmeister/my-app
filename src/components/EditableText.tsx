@@ -1,5 +1,6 @@
 import React, {ChangeEvent, useState} from 'react';
 import styled from "styled-components";
+import {MdDone, MdModeEditOutline} from "react-icons/md";
 
 type EditableTextType = {
     text: string
@@ -27,8 +28,15 @@ export const EditableText = (props: EditableTextType) => {
                     value={newTitle}
                     onChange={onChangeInputHandler}
                 /> :
+                <TasksWrapper>{newTitle}</TasksWrapper>}
 
-                <TasksWrapper onDoubleClick={EditTrueHandler}>{newTitle}</TasksWrapper> }
+            {edit
+                ? <IconWrapper onClick={() => setEdit(!edit)}><MdDone size='1.4rem'
+                                                                      opacity='40%' cursor='pointer'/></IconWrapper>
+                : <IconWrapper onClick={() => setEdit(!edit)}><MdModeEditOutline size='1.4rem'
+                                                                                 opacity='40%'
+                                                                                 cursor='pointer'/></IconWrapper>
+            }
 
 
         </DivWrapper>
@@ -36,24 +44,25 @@ export const EditableText = (props: EditableTextType) => {
 };
 
 export const DivWrapper = styled.div`
-    display: flex;
-    justify-content: space-between; 
+  display: flex;
+  justify-content: space-between;
 `
 
 export const TasksWrapper = styled.span`
-  //border-radius: 50px;
-  flex: 1 1 0%;
-  font-weight: bold;
-  text-decoration: none;
+  width: 90%;
   overflow: hidden;
-  font-size: 14px;
-  max-width: 250px;
-  
+  text-overflow: ellipsis;
 
 `
 export const InputWrapper = styled.input`
-  background-color: #f4f4f4;
-  font-weight: bold;
-  text-decoration: none;
-  
+  width: 90%;
+  font: 1rem/1em;
+  border: none;
+  background: none;
+  font-size: 20px;
+
+
+`
+export const IconWrapper = styled.div`
+  height: 20px;
 `
