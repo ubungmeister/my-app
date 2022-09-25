@@ -1,3 +1,8 @@
+## A simple CRUD app for organizing your daily tasks with Redux Toolkit.
+<img width="460" alt="tod" src="https://user-images.githubusercontent.com/106166590/192148908-42d6bb55-8a5e-4ff1-a41c-ba68c1251b82.png">
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
