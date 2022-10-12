@@ -7,6 +7,7 @@ import {FaTrash} from 'react-icons/fa';
 import {useDispatch, useSelector} from "react-redux";
 import styled from "styled-components";
 import {EditableText} from "./components/EditableText";
+import {theme} from "./theme";
 
 
 type FilterType = 'All' | 'Completed' | 'Active'
@@ -26,8 +27,7 @@ function App() {
             'July', 'August', 'September', 'October', 'November', 'December'][new Date().getMonth()]
         let weekday = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'][new Date().getDay()]
         let fullDay = weekday + ', ' + new Date().getDate() + ' of';
-        const date = [fullDay, month]
-        return date
+        return [fullDay, month]
     }
 
     let todos = useSelector<AppRootStateType, Array<Todolist>>(state => state.todos.todo)
@@ -76,7 +76,7 @@ function App() {
                     onChange={event => {
                         setText(event.target.value)
                     }}
-                    onKeyPress={(event) => {
+                    onKeyDown ={(event) => {
                         if (event.key === 'Enter') {
                             addTodosHandler()
                         }
@@ -88,7 +88,6 @@ function App() {
                     return (
                         <MapTasksWrapper key={todo.id}>
                             <MapTodosWrapper>
-                                {/*{todo.text}</MapTodosWrapper>*/}
                                 <EditableText text={todo.text}
                                               callBack={(changeTitle) => {
                                                   editTodoListHandler(todo.id, changeTitle)
@@ -133,8 +132,11 @@ export const Wrapper = styled.div`
   width: 500px;
   min-height: 50vh;
   background-color: white;
-  box-shadow: 5px 5px 30px 0px rgba(0, 0, 0, 0.5);
+  box-shadow: 5px 5px 30px 0 rgba(0, 0, 0, 0.5);
 
+  ${theme.breakpoint.phone} {
+    width: 80%;
+  }
 `
 export const BackgroundWrapper = styled.div`
   padding: 2.7em;
@@ -202,6 +204,13 @@ export const FilterWrapper = styled.div`
   justify-content: center;
   margin-top: 1.5rem;
   margin-bottom: 2rem;
+
+  ${theme.breakpoint.phone} {
+    gap: 0.4rem;
+    margin-top: 0.5rem;
+    margin-bottom: 1rem;
+  }
+
 `
 export const FilterIteamWraper = styled(motion.span)`
   font-size: 18px;
@@ -211,6 +220,11 @@ export const FilterIteamWraper = styled(motion.span)`
   border: none;
   color: black;
   padding: 10px 20px;
+
+  ${theme.breakpoint.phone} {
+    padding: 15px 20px;
+  }
+
 
 `
 
